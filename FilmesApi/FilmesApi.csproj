@@ -9,6 +9,7 @@
     <Content Remove="Data\NovaPasta\**" />
     <EmbeddedResource Remove="Data\NovaPasta\**" />
     <None Remove="Data\NovaPasta\**" />
+    <None Remove="Data\Dtos\Endereco\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -28,6 +29,7 @@
 
   <ItemGroup>
     <Folder Include="Migrations\" />
+    <Folder Include="Data\Dtos\Endereco\" />
   </ItemGroup>
 
 </Project>
