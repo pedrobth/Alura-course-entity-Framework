@@ -14,6 +14,13 @@ namespace FilmesApi.Data
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            // 1 gerente X n cinemas
+            builder.Entity<Cinema>()
+                .HasOne(cinema => cinema.Gerente)
+                .WithMany(gerente => gerente.Cinemas)
+                .HasForeignKey(cinema => cinema.GerenteId);
+
+            // 1 cinema X 1 endereco
             builder.Entity<Endereco>()
                 .HasOne(endereco => endereco.Cinema)
                 .WithOne(cinema => cinema.Endereco)
@@ -24,5 +31,6 @@ namespace FilmesApi.Data
         public DbSet<Filme> Filmes { get; set; }
         public DbSet<Cinema> Cinemas { get; set; }
         public DbSet<Endereco> Enderecos { get; set; }
+        public DbSet<Gerente> Gerentes { get; set; }
     }
 }
