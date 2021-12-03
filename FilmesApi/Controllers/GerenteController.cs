@@ -32,7 +32,7 @@ namespace FilmesApi.Controllers
         }
 
         [HttpGet("{id}")]
-        public IActionResult RecuperaGerentePorId([FromBody] int id)
+        public IActionResult RecuperaGerentePorId(int id)
         {
             Gerente gerente = _context.Gerentes.FirstOrDefault(
                 gerente => gerente.Id == id);
