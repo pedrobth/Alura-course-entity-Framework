@@ -14,7 +14,8 @@ namespace FilmesApi.Profiles
             CreateMap<Gerente, ReadGerenteDto>()
                 .ForMember(gerente => gerente.Cinemas, opts => opts
                     .MapFrom(gerente => gerente.Cinemas.Select(
-                        cine => new {
+                        cine => new
+                        {
                             cine.Id,
                             cine.Nome,
                             cine.Endereco
