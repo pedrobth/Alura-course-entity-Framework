@@ -56,16 +56,21 @@ namespace FilmesApi.Controllers
                 nameof(RecuperaGerentePorId), new { Id = gerente.Id }, gerente);
         }
 
-        // PUT api/values/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        // DELETE api/values/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public IActionResult DeletaGerente(int id)
         {
+            Gerente gerente = _context.Gerentes.FirstOrDefault(
+                gerente => gerente.Id == id
+            );
+
+            if (gerente == null)
+            {
+                return NotFound();
+            }
+
+            _context.Remove(gerente);
+            _context.SaveChanges();
+            return NoContent();
         }
     }
 }

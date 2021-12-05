@@ -18,7 +18,8 @@ namespace FilmesApi.Data
             builder.Entity<Cinema>()
                 .HasOne(cinema => cinema.Gerente)
                 .WithMany(gerente => gerente.Cinemas)
-                .HasForeignKey(cinema => cinema.GerenteId);
+                .HasForeignKey(cinema => cinema.GerenteId)
+                .OnDelete(DeleteBehavior.Restrict);
 
             // 1 cinema X 1 endereco
             builder.Entity<Endereco>()
