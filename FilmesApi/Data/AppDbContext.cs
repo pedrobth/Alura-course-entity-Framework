@@ -18,14 +18,23 @@ namespace FilmesApi.Data
             builder.Entity<Cinema>()
                 .HasOne(cinema => cinema.Gerente)
                 .WithMany(gerente => gerente.Cinemas)
-                .HasForeignKey(cinema => cinema.GerenteId)
-                .OnDelete(DeleteBehavior.Restrict);
+                .HasForeignKey(cinema => cinema.GerenteId);
 
             // 1 cinema X 1 endereco
             builder.Entity<Endereco>()
                 .HasOne(endereco => endereco.Cinema)
                 .WithOne(cinema => cinema.Endereco)
                 .HasForeignKey<Cinema>(cinema => cinema.EnderecoId);
+
+            // 1 sessao x 1 filme && 1 cinema (tabela intermediaria rel NxN)
+            builder.Entity<Sessao>()
+                .HasOne(sessao => sessao.Cinema)
+                .WithMany(cinema => cinema.Sessoes)
+                .HasForeignKey(sessao => sessao.CinemaId);
+            builder.Entity<Sessao>()
+                .HasOne(sessao => sessao.Filme)
+                .WithMany(filme => filme.Sessoes)
+                .HasForeignKey(sessao => sessao.FilmeId);
         }
 
 
@@ -33,5 +42,6 @@ namespace FilmesApi.Data
         public DbSet<Cinema> Cinemas { get; set; }
         public DbSet<Endereco> Enderecos { get; set; }
         public DbSet<Gerente> Gerentes { get; set; }
+        public DbSet<Sessao> Sessoes { get; set; }
     }
 }
