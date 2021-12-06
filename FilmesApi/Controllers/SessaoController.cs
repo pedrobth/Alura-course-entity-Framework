@@ -47,7 +47,7 @@ namespace FilmesApi.Controllers
         }
 
         [HttpPost]
-        public IActionResult AdicionaSessao(CreateSessaoDto dto)
+        public IActionResult AdicionaSessao([FromBody]CreateSessaoDto dto)
         {
             Sessao sessao = _mapper.Map<Sessao>(dto);
             _context.Sessoes.Add(sessao);
