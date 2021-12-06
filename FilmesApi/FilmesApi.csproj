@@ -11,6 +11,7 @@
     <None Remove="Data\NovaPasta\**" />
     <None Remove="Data\Dtos\Endereco\" />
     <None Remove="Data\Dtos\Gerente\" />
+    <None Remove="Data\Dtos\Sessao\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -32,6 +33,7 @@
     <Folder Include="Migrations\" />
     <Folder Include="Data\Dtos\Endereco\" />
     <Folder Include="Data\Dtos\Gerente\" />
+    <Folder Include="Data\Dtos\Sessao\" />
   </ItemGroup>
 
 </Project>
