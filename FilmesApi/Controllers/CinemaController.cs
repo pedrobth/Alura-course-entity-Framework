@@ -35,9 +35,28 @@ namespace FilmesAPI.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<Cinema> RecuperaCinemas([FromQuery] string nomeDoFilme)
+        public IActionResult RecuperaCinemas([FromQuery] string nomeDoFilme = null)
         {
-            return _context.Cinemas;
+            List<Cinema> cinemas;
+            cinemas = _context.Cinemas.ToList();
+
+            if (string.IsNullOrEmpty(nomeDoFilme))
+            {
+                return Ok(cinemas);
+            }
+
+            IEnumerable<Cinema> query = from cinema in cinemas
+                      where cinema.Sessoes.Any(sessao =>
+                      sessao.Filme.Titulo == nomeDoFilme)
+                       select cinema;
+            cinemas = query.ToList();
+
+            if (!cinemas.Any())
+            {
+                return NotFound();
+            }
+
+            return Ok(cinemas);
         }
 
         [HttpGet("{id}")]
